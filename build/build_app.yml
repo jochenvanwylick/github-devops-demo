@@ -25,7 +25,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-r win-x64'
+    arguments: '-r win-x86'
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
