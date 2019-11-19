@@ -36,7 +36,7 @@ steps:
     subscriptionName: '5fcb0d36-846f-4721-86e9-47f6c43494fd'
     location: 'West Europe'
     templateLocation: 'Linked artifact'
-    csmFile: 'src/infra/resource_group.json'
+    csmFile: 'infra/resource_group.json'
     deploymentMode: 'Incremental'
 
 - task: AzureResourceManagerTemplateDeployment@3
@@ -48,5 +48,5 @@ steps:
     resourceGroupName: 'jvwdemoappresourcegroup-dev'
     location: 'West Europe'
     templateLocation: 'Linked artifact'
-    csmFile: 'src/infra/resources.json'
+    csmFile: 'infra/resources.json'
     deploymentMode: 'Incremental'
