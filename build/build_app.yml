@@ -10,14 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
@@ -28,6 +20,12 @@ steps:
   inputs:
     command: 'build'
     projects: 'src/app/app.csproj'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '-r win-x64'
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
@@ -50,3 +48,11 @@ steps:
     templateLocation: 'Linked artifact'
     csmFile: 'infra/resources.json'
     deploymentMode: 'Incremental'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Microsoft Azure Internal Consumption(5fcb0d36-846f-4721-86e9-47f6c43494fd)'
+    appType: 'webApp'
+    appName: 'jvwwebapp'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
