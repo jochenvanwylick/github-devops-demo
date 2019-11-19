@@ -19,7 +19,7 @@ namespace app.Pages
 
         public void OnGet()
         {
-            throw new Exception("Something went wrong !");
+            //throw new Exception("Something went wrong !");
         }
     }
 }
